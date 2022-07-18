@@ -1,16 +1,16 @@
 #/usr/bin/bsh/
 
 set -e #if any error then exit teh script
-echo -e "\e[32m Filesystem tracking files growth\e[0m"
+echo -e "\e[35m Filesystem tracking files growth\e[0m"
 
 Filesystem_Path="/home/centos/POC/"
 
-main_func()
-{
+
+#calling functions
 dummy_fcheck
 old_dated_file
 highused_files
-}
+
 
 dummy_fcheck()
 {

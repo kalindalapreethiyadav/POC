@@ -5,13 +5,6 @@ echo -e "\e[35m Filesystem tracking files growth\e[0m"
 
 Filesystem_Path="/home/centos/POC/"
 
-
-#calling functions
-dummy_fcheck
-old_dated_file
-highused_files
-
-
 dummy_fcheck()
 {
 echo "Tracking the dummy files in $Filesystem_Path:"
@@ -28,3 +21,7 @@ highused_files()
 echo "Finding out Top 5 High space usage files & listing <15days created files in $Filesystem_Path:"
 }
 
+#calling functions
+dummy_fcheck
+old_dated_file
+highused_files

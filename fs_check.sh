@@ -23,7 +23,12 @@ highused_files()
 {
 echo "Finding out Top 5 High space usage files & listing <15days created files in $Filesystem_Path:"
 echo "checking test 1:"
+du -sk ./* | sort -rn | head -5 > $Filesystem_Path/Top_Dir.log
+
+for i in $Filesystem_Path/Top_Dir.log
+{
 find . -type f -exec ls -al {} \; | sort -nr -k5 | head -n 5
+}
 echo "checking test 2:"
 find . -type f -exec ls -s {} \; | sort -nr | awk 'NR==1 { $1=""; sub(/^ /, ""); print }'
 }

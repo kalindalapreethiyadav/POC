@@ -1,6 +1,6 @@
 #/usr/bin/bsh/
 
-set -e #if any error then exit teh script
+set -e #if any error then exit the script
 echo -e "\e[35m Filesystem tracking files growth\e[0m"
 
 Filesystem_Path="/home/centos/POC/"

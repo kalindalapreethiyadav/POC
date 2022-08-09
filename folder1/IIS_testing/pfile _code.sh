@@ -1,5 +1,3 @@
-
-
 #!/bin/bash
 
 exec 1> ftracking_log.txt 2>&1 
@@ -23,8 +21,8 @@ echo -e "\e[34m-------------------------------------------\e[0m"
 
 highused_files()
 {
-echo -e "Files size > $fsize & modified/created 60 days ago in $1 : \n"
-find $1 -type f -mtime +60 -size $fsize -ls | awk '{print $(NF-4)" "$NF}'
+echo -e "Files size > $fsize & modified 15 days prior in $1 : \n"
+find $1 -type f -mtime +15 -size $fsize -ls | awk '{print $(NF-4)" "$NF}'
 echo -e "\e[34m-------------------------------------------\e[0m"
 }
 

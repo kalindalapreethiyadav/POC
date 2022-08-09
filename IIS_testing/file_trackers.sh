@@ -31,9 +31,8 @@ do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 #calling functions
 pre_fcheck "$line"
-highused_files "$line"
 old_dated "$line"
-
+highused_files "$line"
 done
 
 echo -e "\e[32m *******Succesfully completed***********\n \e[0m"

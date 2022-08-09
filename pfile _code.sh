@@ -30,9 +30,9 @@ echo "********************************************************"
 for line in $filepath
 do
 #calling functions
-pre_fcheck "$line" >> /home/preek/ftrack.log
-highused_files "$line" >> /home/preek/ftrack.log
-old_dated "$line" >>/home/preek/ftrack.log
+pre_fcheck "$line"
+highused_files "$line"
+old_dated "$line"
 done
 
 echo -e "\e[32m *******Succesfully completed***********\n \e[0m"

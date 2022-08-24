@@ -25,6 +25,7 @@ do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 #calling functions
 file_track "$line"
+echo -e "\e[36m****************completed tracking on $line******************\e[0m \n"
 done
 
 

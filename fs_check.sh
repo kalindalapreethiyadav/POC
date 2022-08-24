@@ -1,30 +1,37 @@
-#/usr/bin/bsh/
 
-set -e #if any error then exit the script
-echo -e "\e[35m Filesystem tracking files growth\e[0m"
+#!/bin/bash
 
-Filesystem_Path="/home/centos/POC/"
+exec 1> file_tracking.log 2>&1
+filepath=$(cat filepath.txt)
+fsize="+200c"
 
-dummy_fcheck()
-{
-echo "Tracking the dummy files in $Filesystem_Path:"
-cd $Filesystem_Path
-find . -type  f \( -name '*test*' -o -name "*onetime*" -o -name "*dummy*" -o -name "*Test*file*" \) -exec ls -lt {} \; &>> $Filesystem_Path/fs_log.txt
-}
+file_track()
+ {
+echo -e "\e[32m Test files in $1:\n \e[0m"
+find $1 -type f \( -name '*test*' -o -name "*onetime*" -o -name "*dummy*" -o -name "*TEST*FILE*" -o -name "*test*file*" -o -name '*ONETIME*' -o -name '*TEST*' -o -name '*DUMMY*' \) -exec ls -lt {} \; | awk '{print $NF}'
+echo -e "\e[34m-------------------------------------------\e[0m"
 
-old_dated_file()
-{
-echo "Tracking the >60days old dated files in $Filesystem_Path:"
-}
+echo -e "Files older than 60 days in $1 :\n"
+find $1 -type f -mtime +60 -ls | awk '{print $(8)" "$(9) "\t" $(NF-4) "\t" $NF}'
+echo -e "\e[34m-------------------------------------------\e[0m"
 
-highused_files()
-{
-echo "Finding out Top 5 High space usage files & listing <15days created files in $Filesystem_Path:"
-}
+echo -e "Files size > $fsize & modified 15 days prior in $1 : \n"
+find $1 -type f -mtime +15 -size $fsize -ls | awk '{print $(NF-4)" "$NF}'
+echo -e "\e[34m-------------------------------------------\e[0m"
+ }
 
+for line in $filepath
+do
+echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 #calling functions
-dummy_fcheck
-old_dated_file
-highused_files
+file_track "$line"
+done
 
-exit 0;
+
+
+
+
+
+echo -e "\e[32m *******Succesfully completed***********\n \e[0m"
+exit 0
+

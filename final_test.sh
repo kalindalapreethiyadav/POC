@@ -18,10 +18,9 @@ echo -e "\n**********Files older than 60 days ***********\n"
 
 old_files=$(find $1 -mtime +1 -ls)
 
-if [[ $old_files ]]; then
+if [[ -e $old_files ]]; then
     echo -e "old dated Files found\n"
-	cat old_files
-else
+elif [ ! -s $old_files ]; then
     echo -e "No old dated files found\n"
 fi
 echo "****************************************"

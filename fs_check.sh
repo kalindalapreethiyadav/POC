@@ -30,8 +30,8 @@ done
 
 for line in $filepath
 do
- total_size = ${df -g $line | awk '{print $2}'}
- cat total_size
+ total_size = $(df -g $line | awk '{print $2}')
+ echo $total_size
  done
 
 echo -e "\e[32m *******Succesfully completed***********\n \e[0m"

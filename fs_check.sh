@@ -32,7 +32,9 @@ for line in $filepath
 do
  total_size=$(df -g $line | awk '{print $2}')
  echo $total_size
+ find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -5
  done
+
 
 echo -e "\e[32m *******Succesfully completed***********\n \e[0m"
 exit 0

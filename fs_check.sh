@@ -32,7 +32,7 @@ for line in $filepath
 do
  total_size=$(df -g $line | awk '{print $2}')
  echo $total_size
- find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -5
+ find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -5 >dufile 
  done
 
 

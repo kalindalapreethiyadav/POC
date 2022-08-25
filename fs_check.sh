@@ -20,20 +20,40 @@ find $1 -type f -mtime +15 -size $fsize -ls | awk '{print $(NF-4)" "$NF}'
 echo -e "\e[34m-------------------------------------------\e[0m"
  }
 
+High_used_file()
+{
+cd $1
+if [ -d "$1" ] ; then
+    echo "go to is a directory function";
+else
+    if [ -f "$1" ]; then
+        echo "${PASSED} is a file";
+    else
+        echo "${PASSED} is not valid";
+        exit 1
+    fi
+fi
+}
+
 for line in $filepath
 do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 #calling functions
 file_track "$line"
 echo -e "\e[36m****************completed tracking on $line******************\e[0m \n"
+
+echo -e "*************starting Advance level script***********\n"
+High_used_file "$line"
+echo -e "\e[36m****************completed Advance level one $line******************\e[0m \n"
 done
 
 for line in $filepath
 do
  total_size=$(df -g $line | awk '{print $2}')
  echo $total_size
- find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -5 >dufile 
+ find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -5 
  done
+
 
 
 echo -e "\e[32m *******Succesfully completed***********\n \e[0m"

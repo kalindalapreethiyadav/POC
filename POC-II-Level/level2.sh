@@ -25,18 +25,6 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
 
 for line in $filepath
 do
-echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
-#calling functions
-file_track "$line"
-echo -e "\e[36m****************completed tracking on $line******************\e[0m \n"
-
-echo -e "*************starting Advance level script***********\n"
-High_used_file "$line"
-echo -e "\e[36m****************completed Advance level one $line******************\e[0m \n"
-done
-
-for line in $filepath
-do
  total_size=$(df $line | awk '{print $2}')
  echo $total_size
  level2_track $line

@@ -22,6 +22,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         fi
     fi
 }
+}
 
 for line in $filepath
 do

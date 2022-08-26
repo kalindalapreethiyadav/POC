@@ -22,7 +22,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
     fi
 }
 }
-
+<<comm
 level3_dftrack()
 {
 cd $1
@@ -40,12 +40,12 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
     fi
 }
 }
-
+comm
 for line in $filepath
 do
  total_size=$(df $line | awk '{print $2}')
  echo $total_size
- level2_track $line
+ level2_ftrack $line
  done
 
 echo -e "\e[32m *******Succesfully completed***********\n \e[0m"

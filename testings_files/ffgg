@@ -1,5 +1,10 @@
 
+<<<<<<< HEAD:fs_check.sh
 #!/bin/bash
+=======
+set -e #if any error then exit the script
+echo -e "\e[35m Filesystem tracking files growth\e[0m"
+>>>>>>> dfcc72b9e68800ba6244342f0831a1a6b90c0e93:folder2/fs_check.sh
 
 exec 1> file_tracking.log 2>&1
 filepath=$(cat filepath.txt)
@@ -39,8 +44,28 @@ for line in  (find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
 
 director_func()
 {
+<<<<<<< HEAD:fs_check.sh
 for line in (find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -5)
  
+=======
+echo "Tracking the >60days old dated files in $Filesystem_Path:"
+cd $Filesystem_Path
+find . -type f -mtime +1 -exec $(ls -lrt) {} \;
+}
+
+highused_files()
+{
+echo "Finding out Top 5 High space usage files & listing <15days created files in $Filesystem_Path:"
+echo "checking test 1:"
+du -sk ./* | sort -rn | head -5 > $Filesystem_Path/Top_Dir.log
+
+for i in $Filesystem_Path/Top_Dir.log
+{
+find . -type f -exec ls -al {} \; | sort -nr -k5 | head -n 5
+}
+echo "checking test 2:"
+find . -type f -exec ls -s {} \; | sort -nr | awk 'NR==1 { $1=""; sub(/^ /, ""); print }'
+>>>>>>> dfcc72b9e68800ba6244342f0831a1a6b90c0e93:folder2/fs_check.sh
 }
 
 for line in $filepath

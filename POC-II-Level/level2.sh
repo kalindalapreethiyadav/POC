@@ -14,7 +14,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         if [ -f "$line" ]; then
             echo "$line is a file";
         else
-            echo $line > /dev/null
+            echo " " > /dev/null
         fi
         }   
         }

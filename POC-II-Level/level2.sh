@@ -8,7 +8,7 @@ fsize="+200c"
 level2_track()
 {
 cd $1
-for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -5)
+for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -5 | awk '{print $NF}')
 {
     if [ -d "$line" ] ; then
         echo "director name : $line";

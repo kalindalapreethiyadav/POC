@@ -10,9 +10,6 @@ level2_ftrack()
 cd $1
 for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
 {
-    if [ -d "$line" ] ; then
-        echo "director name : $line";
-    else
         if [ -f "$line" ]; then
             echo "$line is a file";
         else

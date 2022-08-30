@@ -16,12 +16,11 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         if [ -f "$line" ]; then
             echo -e "$line is a file";
             old_size = $(ls -lrt $line | awk '{print $5F}')
-            if [[ $($oldsize * 1/10) -ge $(total_size) ]] ; then
-                echo -e 'This $line file is 10% greater\n'
-                else
-                echo 'This file is not large enough'
-                fi
-           # echo "$oldsize"
+            if [[ ($oldsize * 1/10) -ge $(total_size) ]] ; then
+            echo "greater"
+            else 
+            echo "not greater"
+            fi
         else
             echo " " > /dev/null
         fi

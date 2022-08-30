@@ -12,10 +12,11 @@ echo $total_size
 cd $1
 for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
         {
-        echo $line
+        echo "$line"
         if [ -f "$line" ]; then
-            echo "$line is a file";
-                if [[ $(ls -lrt $(line) | awk '{print $5F}'| / $(total_size)* 100 -ge 30)]]; then
+            echo -e "$line is a file";
+               filesize_l = $(ls -lrt $line)| awk '{print $5F}'
+                if [[  ($filesize_l / $total_size * 100) -ge 30 ]]; then
                 echo -e 'This $line file is 30% greater\n'
                 else
                 echo 'This file is not large enough'

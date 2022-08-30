@@ -15,8 +15,8 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         echo "$line"
         if [ -f "$line" ]; then
             echo -e "$line is a file";
-               oldsize = $(ls -lrt $line)| awk '{print $5F}'
-               echo "$oldsize"
+            ls -lrt $line | awk '{print $5F}'
+           # echo "$oldsize"
         else
             echo " " > /dev/null
         fi

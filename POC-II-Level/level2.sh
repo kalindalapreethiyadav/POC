@@ -18,11 +18,6 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
             old_size = $(ls -lrt $line | awk '{print $5F}')
             echo $old_size
             echo $total_size
-            if [[ $(($total_size * 9/10)) -ge $old_size ]]; then
-            echo 'This file is 90% or greater'
-            else
-            echo 'This file is not large enough'
-            fi
         else
             echo " " > /dev/null
         fi

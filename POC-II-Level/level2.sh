@@ -15,7 +15,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         echo "$line"
         if [ -f "$line" ]; then
             echo -e "$line is a file";
-               filesize(_l = $(ls -lrt $line)| awk '{print $5F}'
+               filesize_l = $(ls -lrt $line)| awk '{print $5F}'
                 if [[ $((filesize_l / total_size) * 100) -ge 30 ]]; then
                 echo -e 'This $line file is 30% greater\n'
                 else

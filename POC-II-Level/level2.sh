@@ -7,7 +7,7 @@ filepath=$(cat filepath.txt)
 
 level2_ftrack()
 {
-total_size=$(df $line | awk '{print $2}')
+total_size=$(df $line | awk '{print $2}') | sed -n '$p' 
 echo $total_size
 cd $1
 for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')

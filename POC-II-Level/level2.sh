@@ -9,15 +9,20 @@ level2_ftrack()
 {
 total_size=$(df $line | awk '{print $2}' | tail -1)
 echo $total_size
-cd $1
+cd $line
 for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
         {
-        echo "$line"
+        echo "$"
         if [ -f "$line" ]; then
             echo -e "$line is a file";
-            used_size=$(ls -lrt $line | awk '{print $5F}')
-            echo -e "$used_size used size "
-            echo -e "$total_size total size"
+            used_fsize=$(ls -lrt $line | awk '{print $5F}')
+             if (((($total_size - $used_fsize) / $total_size) * 100) -ge 40 )
+             {
+                echo "$1 is > 40%"
+             }
+             else{
+                echo "$1 is < 40%"
+             }
         else
             echo " " > /dev/null
         fi

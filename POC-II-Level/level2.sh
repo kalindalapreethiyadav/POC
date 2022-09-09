@@ -12,7 +12,6 @@ echo $total_size
 cd $line
 for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
         {
-        echo "$"
         if [ -f "$line" ]; then
             echo -e "$line is a file";
             used_fsize=$(ls -lrt $line | awk '{print $5F}')

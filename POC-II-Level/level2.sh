@@ -19,6 +19,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
             echo " " > /dev/null
         fi
         } 
+}
 <<comm
 level3_dftrack()
 {

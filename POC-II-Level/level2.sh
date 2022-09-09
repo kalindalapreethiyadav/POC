@@ -16,6 +16,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
             echo -e "$line is a file";
             used_fsize=$(ls -lrt $line | awk '{print $5F}')
             echo $total_size $used_fsize 
+            percent=$((100*$used_fsize/$total_size ))
         else
             echo " " > /dev/null
         fi

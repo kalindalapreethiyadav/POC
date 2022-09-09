@@ -18,17 +18,14 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
             echo $total_size $used_fsize 
             fpercent=$((100*$used_fsize/$total_size ))
                 if [ $fpercent -ge 40 ]
-                {
                     echo "$line is > 40%"
-                }
-                else{
+                else 
                     echo " " > /dev/null
-                }
         else
             echo " " > /dev/null
         fi
-        }   
-        }
+        } 
+     }
 <<comm
 level3_dftrack()
 {

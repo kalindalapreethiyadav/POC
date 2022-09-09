@@ -8,6 +8,7 @@ file_per=1
 
 level2_ftrack()
 {
+echo -e "\e[32m Tracking files > $file_per in $1:\n \e[0m"
 total_size=$(df $line | awk '{print $2}' | tail -1)
 cd $line
 for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
@@ -18,7 +19,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
             #echo $total_size $used_fsize 
             fpercent=$((100*$used_fsize/$total_size ))
                 if [ $fpercent -ge $file_per ] ; then
-                echo "Total_SIZE = $total_size Used_SIZE = $used_fsize  File_Details = $line > $file_per%  Used_percent = $fpercent"
+                echo "Total_SIZE = $total_size Used_SIZE = $used_fsize  File_Details = $line  Used_percent = $fpercent"
                 else
                 echo " " > /dev/null
                 fi

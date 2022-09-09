@@ -11,7 +11,7 @@ total_size=$(df $line | awk '{print $2}' | tail -1)
 echo $total_size
 cd $line
 fper=1
-for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}' 2>&1 | grep -v "Permission denied")
+for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}' 2>&1 | grep -v "Permission denied" > output-file)
         {
         if [ -f "$line" ]; then
            # echo -e "$line is a file";

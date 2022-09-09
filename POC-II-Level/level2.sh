@@ -19,7 +19,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
             #echo $total_size $used_fsize 
             fpercent=$((100*$used_fsize/$total_size ))
                 if [ $fpercent -ge $fper ] ; then
-                echo "$total_size $used_fsize of $line file > $fper %"
+                echo "$total_size $used_fsize of $line file > $fper % and used_percent = $fpercent"
                 else
                 echo " " > /dev/null
                 fi

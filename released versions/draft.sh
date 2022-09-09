@@ -4,13 +4,12 @@
 exec 1> file_tracking.log 2>&1
 filepath=$(cat filepath.txt)
 #fsize="+200c"
+file_per=1
 
 level2_ftrack()
 {
 total_size=$(df $line | awk '{print $2}' | tail -1)
-echo $total_size
 cd $line
-fper=1
 for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
         {
         if [ -f "$line" ]; then
@@ -18,8 +17,8 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
             used_fsize=$(ls -lrt $line | awk '{print $5F}')
             #echo $total_size $used_fsize 
             fpercent=$((100*$used_fsize/$total_size ))
-                if [ $fpercent -ge $fper ] ; then
-                echo "$total_size $used_fsize of $line file > $fper % and used_percent = $fpercent"
+                if [ $fpercent -ge $file_per ] ; then
+                echo "Total_SIZE = $total_size Used_SIZE = $used_fsize  File_Details = $line > $file_per%  Used_percent = $fpercent"
                 else
                 echo " " > /dev/null
                 fi

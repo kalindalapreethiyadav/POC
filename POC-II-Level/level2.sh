@@ -1,7 +1,7 @@
 
 #!/bin/bash
 
-exec 1> file_tracking.log 2>&1
+#exec 1> file_tracking.log 2>&1
 filepath=$(cat filepath.txt)
 #fsize="+200c"
 

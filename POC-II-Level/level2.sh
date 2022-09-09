@@ -15,7 +15,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         if [ -f "$line" ]; then
             echo -e "$line is a file";
             used_fsize=$(ls -lrt $line | awk '{print $5F}')
-            echo $used_fsize
+            echo $total_size $used_fsize 
         else
             echo " " > /dev/null
         fi

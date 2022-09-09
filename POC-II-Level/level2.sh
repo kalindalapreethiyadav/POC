@@ -21,7 +21,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
                 if [ $fpercent -ge $fper ] ; then
                 echo -e 'This $line file is 40% greater\n'
                 else
-                echo 'This $line is not large enough'
+                echo " " > /dev/null
                 fi
         else
             echo " " > /dev/null

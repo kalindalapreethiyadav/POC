@@ -16,13 +16,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         if [ -f "$line" ]; then
             echo -e "$line is a file";
             used_fsize=$(ls -lrt $line | awk '{print $5F}')
-             if [ (($total_size - $used_fsize) / ($total_size * 100)) -ge 40 ]
-             {
-                echo "$1 is > 40%"
-             }
-             else{
-                echo "$1 is < 40%"
-             }
+            echo $used_fsize
         else
             echo " " > /dev/null
         fi

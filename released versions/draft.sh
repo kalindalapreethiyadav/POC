@@ -7,19 +7,27 @@ filepath=$(cat filepath.txt)
 
 level2_ftrack()
 {
-total_size=$(df $line | awk '{print $2}')
+total_size=$(df $line | awk '{print $2}' | tail -1)
 echo $total_size
-cd $1
+cd $line
+fper=5
 for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
         {
-        echo $line
         if [ -f "$line" ]; then
-         echo $line
+           # echo -e "$line is a file";
+            used_fsize=$(ls -lrt $line | awk '{print $5F}')
+            #echo $total_size $used_fsize 
+            fpercent=$((100*$used_fsize/$total_size ))
+                if [ $fpercent -ge $fper ] ; then
+                echo "$total_size $used_fsize of $line file > $fper % and used_percent = $fpercent"
+                else
+                echo " " > /dev/null
+                fi
         else
             echo " " > /dev/null
         fi
         }   
-        }
+    }
 
 for line in $filepath
 do

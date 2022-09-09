@@ -10,7 +10,7 @@ level2_ftrack()
 total_size=$(df $line | awk '{print $2}' | tail -1)
 echo $total_size
 cd $line
-fper=5
+fper=1
 for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
         {
         if [ -f "$line" ]; then

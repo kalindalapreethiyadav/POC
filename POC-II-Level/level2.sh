@@ -18,7 +18,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
             used_fsize=$(ls -lrt $line | awk '{print $5F}')
             echo $total_size $used_fsize 
             fpercent=$((100*$used_fsize/$total_size ))
-                if [ $(fpercent) -ge $(fper) ] ; then
+                if [ $fpercent -ge $fper ] ; then
                 echo -e 'This $line file is 40% greater\n'
                 else
                 echo 'This $line is not large enough'

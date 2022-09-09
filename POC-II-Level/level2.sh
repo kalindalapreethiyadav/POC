@@ -31,11 +31,13 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         }   
     }
 
-<<comm
 level3_dftrack()
 {
 cd $1
-for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
+echo -e "\e[32m Tracking directories > $file_per% in $1:\n \e[0m"
+total_size=$(df $line | awk '{print $2}' | tail -1)
+
+for line in $(ls -lrt | grep "^d" |)
 {
     if [ -d "$line" ] ; then
         echo "director name : $line";

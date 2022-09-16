@@ -6,6 +6,7 @@ filepath=$(cat filepath.txt)
 file_per=1
 echo -e "\e[32m *******Script started on $(date +%F) ***********\n \e[0m" 
 ## echo the date at start
+
 level2_ftrack()
 {
 echo -e "\e[32m Tracking files > $file_per% in $1:\n \e[0m"
@@ -14,7 +15,7 @@ cd $line
 for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
         {
         if [ -f "$line" ]; then
-           # echo -e "$line is a file";
+           #echo -e "$line is a file";
             used_fsize=$(ls -lrt $line | awk '{print $5F}')
             #echo $total_size $used_fsize 
             fpercent=$((100*$used_fsize/$total_size ))
@@ -28,15 +29,18 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         fi
         }   
     }
-<<comm
+
 level3_dftrack()
 {
 cd $1
+if (ls -lrt | grep "^d" )
 echo -e "\e[32m Tracking directories > $file_per% in $1:\n \e[0m"
 total_size=$(df $line | awk '{print $2}' | tail -1)
 
-for line in $(ls -lrt | grep "^d" |)
+for line in ($(ls -lrt | grep "^d" |awk -F ' ' '{print $NF}'))
 {
+    used_fsize=$(ls -lrt $line | awk '{print $5F}')
+   fpercent=$((100*$used_fsize/$total_size ))
     if [ -d "$line" ] ; then
         echo "director name : $line";
     else

@@ -47,7 +47,7 @@ do
 level2_ftrack $line
 done
 
-for line in $filepath
+for d in $filepath
 do
 level3_dtrack $line
 done

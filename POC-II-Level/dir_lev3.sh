@@ -10,11 +10,11 @@ level3_dftrack()
 {
  cd $line
  for FILE in *;
-      if [ -f "$1" ]; then
-      echo "$1 file"
+      if [ -f "$line" ]; then
+      echo "$line file"
       fi
-      elif [ -d "$1"]; then
-      echo "$1 director"
+      elif [ -d "$line"]; then
+      echo "$line director"
       else
       echo "nothing"
       fi

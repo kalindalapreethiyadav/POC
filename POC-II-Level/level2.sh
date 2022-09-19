@@ -12,7 +12,7 @@ level2_ftrack()
 echo -e "\e[32m Tracking files > $file_per% in $1:\n \e[0m"
 total_size=$(df $line | awk '{print $2}' | tail -1)
 cd $line
-for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
+for line in $(find . -path '*./*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
         {
         if [ -f "$line" ]; then
            #echo -e "$line is a file";
@@ -32,29 +32,27 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
 <<comm
 level3_dftrack()
 {
-cd $1
-if (ls -lrt | grep "^d" )
 echo -e "\e[32m Tracking directories > $file_per% in $1:\n \e[0m"
 total_size=$(df $line | awk '{print $2}' | tail -1)
-
-for line in ($(find . type -d -exec du -sk {} + | sort -rn | head -10 | awk -F ' ' '{print $NF}'))
-{
-#for line in ($(ls -lrt | grep "^d" | awk -F ' ' '{print $NF}'))
- # {
-   used_fsize=$(ls -lrt $line | awk '{print $5F}')
-   fpercent=$((100*$used_fsize/$total_size ))
-    if [ -d "$line" ] ; then
-        echo "director name : $line";
-    else
-        if [ -f "$line" ]; then
-            echo "$line is a file";
+cd $line
+track_d ="find . -type d -depth=1-exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}'"
+for line in $track_d &&  
+        {
+        if [ -d "$line" ]; then
+           #echo -e "$line is a file";
+           
+            #echo $total_size $used_fsize 
+            fpercent=$((100*$used_fsize/$total_size ))
+                if [ $fpercent -ge $file_per ] ; then
+                echo "Total_SIZE = $total_size Used_SIZE = $used_fsize  File_Details = $line Used_percent = $fpercent"
+                else
+                echo " " > /dev/null
+                fi
         else
-            echo "$line no files or directors found";
-            exit 1
+            echo " " > /dev/null
         fi
-    fi
-}
-}
+        }   
+    }
 comm
 for line in $filepath
 do

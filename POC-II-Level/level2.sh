@@ -25,6 +25,10 @@ for line in $tracked_files
                 else
                 echo " " > /dev/null
                 fi
+        else
+            echo " " > /dev/null
+        fi
+        }   
     }
 
 for line in $filepath
@@ -34,3 +38,4 @@ done
 
 echo -e "\e[32m *******Succesfully completed on $(date +%F) ***********\n \e[0m"
 exit 0
+

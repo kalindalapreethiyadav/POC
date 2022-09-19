@@ -14,7 +14,7 @@ echo -e "\e[32m Tracking files > $file_per% in $1:\n \e[0m"
 total_size=$(df $line | awk '{print $2}' | tail -1)
 cd $line
 for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
-        do
+    do
         if [ -f "$line" ]; then
            # echo -e "$line is a file";
             used_fsize=$(ls -lrt $line | awk '{print $5F}')
@@ -28,7 +28,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         else
             echo " " > /dev/null
         fi
-        done  
+    done  
     }
 
 for line in $filepath

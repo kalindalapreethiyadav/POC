@@ -33,7 +33,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
 
 level3_dftrack()
 {
-echo -e "\e[32m Tracking files > $file_per% in $1:\n \e[0m"
+echo -e "\e[32m Tracking directries > $file_per% in $1:\n \e[0m"
 total_size=$(df $line | awk '{print $2}' | tail -1)
 cd $line
 for line in $(find . -path '*/\.*' -prune -o -type d -exec du -sk {} + | sort -rn | head -5 | awk '{print $NF}')
@@ -57,6 +57,7 @@ for line in $(find . -path '*/\.*' -prune -o -type d -exec du -sk {} + | sort -r
 for line in $filepath
 do
 level2_ftrack $line
+level3_dftrack $line
 done
 
 echo -e "\e[32m *******Succesfully completed on $(date +%F) ***********\n \e[0m"

@@ -15,15 +15,15 @@ total_size=$(df $line | awk '{print $2}' | tail -1)
 cd $line
 find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}' >/home/centos/poc/POC/POC-II-Level/files_list.txt
 
-for line in $tracked_files
+for file in $tracked_files
     do
-        if [ -f "$line" ]; then
+        if [ -f "$1" ]; then
            # echo -e "$line is a file";
-            used_fsize=$(ls -lrt $line | awk '{print $5F}')
+            used_fsize=$(ls -lrt $1 | awk '{print $5F}')
             #echo $total_size $used_fsize 
             fpercent=$((100*$used_fsize/$total_size ))
                 if [ $fpercent -ge $file_per ] ; then
-                echo "Total_SIZE = $total_size Used_SIZE = $used_fsize  File_Details = $line  Used_percent = $fpercent"
+                echo "Total_SIZE = $total_size Used_SIZE = $used_fsize  File_Details = $1  Used_percent = $fpercent"
                 else
                 echo " " > /dev/null
                 fi

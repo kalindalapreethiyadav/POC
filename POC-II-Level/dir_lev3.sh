@@ -14,7 +14,6 @@ total_size=$(df $line | awk '{print $2}' | tail -1)
 cd $1
 for line in $(find . -path '*/\.*' -prune -o -type d -exec du -sk {} + | sort -rn | head -5 | awk '{print $NF}')
         {
-        if [ -d "$line" ]; then
             used_dsize=$(ls -lrt $line | awk '{print $5F}') 
             dpercent=$((100*$used_dsize/$total_size ))
             echo "Total_SIZE = $total_size Used_SIZE = $used_dsize  directory_Details = $line"
@@ -23,9 +22,6 @@ for line in $(find . -path '*/\.*' -prune -o -type d -exec du -sk {} + | sort -r
                 else
                 echo "Director $line is not > 5%"
                 fi
-        else
-            echo " " > /dev/null
-        fi
         }   
     }
 

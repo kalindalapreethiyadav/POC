@@ -6,7 +6,7 @@ filepath=$(cat filepath.txt)
 #fsize="+200c"
 file_per=1
 
-echo -e "\e[32m *******Script started on $date ***********\n \e[0m" 
+echo -e "\e[32m *******Script started on $(date) ***********\n \e[0m" 
 ## echo the date at start
 level2_ftrack()
 {
@@ -37,6 +37,6 @@ do
 level2_ftrack $line
 done
 
-echo -e "\e[32m *******Succesfully completed on $date ***********\n \e[0m"
+echo -e "\e[32m *******Succesfully completed on $(date) ***********\n \e[0m"
 exit 0
 

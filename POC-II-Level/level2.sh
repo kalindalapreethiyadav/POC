@@ -33,6 +33,8 @@ for file in $tracked_files
         fi  
     done
 
+
+
 for line in $filepath
 do
 level2_ftrack $line

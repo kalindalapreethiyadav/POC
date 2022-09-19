@@ -14,6 +14,7 @@ echo -e "\e[32m Tracking files > $file_per% in $1:\n \e[0m"
 total_size=$(df $line | awk '{print $2}' | tail -1)
 cd $line
 find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}' >/home/centos/poc/POC/POC-II-Level/list_files.txt
+}
 
 for file in $tracked_files
     do
@@ -31,8 +32,6 @@ for file in $tracked_files
             echo " " > /dev/null
         fi  
     done
-
-}
 
 for line in $filepath
 do

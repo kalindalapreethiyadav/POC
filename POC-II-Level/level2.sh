@@ -45,6 +45,10 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
 for line in $filepath
 do
 level2_ftrack $line
+done
+
+for line in $filepath
+do
 level3_dtrack $line
 done
 

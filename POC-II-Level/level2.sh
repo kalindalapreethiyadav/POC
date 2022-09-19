@@ -29,8 +29,7 @@ for line in $tracked_files
                 fi
         else
             echo " " > /dev/null
-        fi
-        }   
+        fi  
     done
 
 for line in $filepath

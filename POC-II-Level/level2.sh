@@ -38,6 +38,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         {
         if [ -d "$line" ]; then
          echo $line
+         fi
        }
     }
 

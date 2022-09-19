@@ -32,14 +32,15 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
     }
 
    level3_dtrack()
-  {
+    {
     echo -e "\e[32m Tracking directories > $file_per% in $1:\n \e[0m"
+    cd $line
     for line in $(find . -path '*/\.*' -prune -o -type d -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
         {
         if [ -d "$line" ]; then
          echo $line
        }
- }
+    }
 
 for line in $filepath
 do

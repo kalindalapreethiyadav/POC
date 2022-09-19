@@ -3,7 +3,7 @@
 filepath=$(cat filepath.txt)
 #fsize="+200c"
 file_per=1
-dir_per=5
+dir_per=1
 echo -e "\e[32m *******Script started on $(date +'%m/%d/%Y') ***********\n \e[0m" 
 ## echo the date at start
 

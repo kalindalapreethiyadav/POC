@@ -12,9 +12,9 @@ level2_ftrack()
 {
 echo -e "\e[32m Tracking files > $file_per% in $1:\n \e[0m"
 total_size=$(df $line | awk '{print $2}' | tail -1)
-t_files=$(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}' 1> list_files.txt 2> files_error.txt)
+t_files=$(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}' 1> list_files.txt 2>/dev/null)
 cd $line
-for line in $tracked_files 2>/dev/null
+for line in $tracked_files
         {
         if [ -f "$line" ]; then
            # echo -e "$line is a file";

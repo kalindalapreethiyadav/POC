@@ -34,4 +34,3 @@ done
 
 echo -e "\e[32m *******Succesfully completed on $(date +%F) ***********\n \e[0m"
 exit 0
-

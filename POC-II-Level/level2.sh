@@ -7,7 +7,6 @@ file_per=1
 dir_per=10
 echo -e "\e[32m *******Script started on $(date +'%m/%d/%Y') ***********\n \e[0m" 
 ## echo the date at start
-
 level2_ftrack()
 {
 echo -e "\e[32m Tracking files > $file_per% in $1:\n \e[0m"
@@ -16,12 +15,12 @@ cd $line
 for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
         {
         if [ -f "$line" ]; then
-           #echo -e "$line is a file";
+           # echo -e "$line is a file";
             used_fsize=$(ls -lrt $line | awk '{print $5F}')
             #echo $total_size $used_fsize 
             fpercent=$((100*$used_fsize/$total_size ))
                 if [ $fpercent -ge $file_per ] ; then
-                echo "Total_SIZE = $total_size Used_SIZE = $used_fsize  File_Details = $line Used_percent = $fpercent"
+                echo "Total_SIZE = $total_size Used_SIZE = $used_fsize  File_Details = $line  Used_percent = $fpercent"
                 else
                 echo " " > /dev/null
                 fi

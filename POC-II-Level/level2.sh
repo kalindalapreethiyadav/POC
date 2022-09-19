@@ -2,6 +2,7 @@
 #!/bin/bash
 #exec 1> file_tracking.log 2>&1
 filepath=$(cat filepath.txt)
+tracked_files=$(cat list_files.txt)
 #fsize="+200c"
 file_per=1
 dir_per=10
@@ -11,9 +12,9 @@ level2_ftrack()
 {
 echo -e "\e[32m Tracking files > $file_per% in $1:\n \e[0m"
 total_size=$(df $line | awk '{print $2}' | tail -1)
-t_files=$(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}' 2>/dev/null 1> tracked_files.txt)
+t_files=$(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}' 1> list_files.txt)
 cd $line
-for line in $(cat tracked_files.txt)
+for line in $(tracked_files)
         {
         if [ -f "$line" ]; then
            # echo -e "$line is a file";

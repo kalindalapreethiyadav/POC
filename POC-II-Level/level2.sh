@@ -5,7 +5,7 @@ filepath=$(cat filepath.txt)
 #fsize="+200c"
 file_per=1
 dir_per=10
-echo -e "\e[32m *******Script started on $(date +'%m/%d/%Y') ***********\n \e[0m" 
+echo -e "\e[32m *******Script started on $(date) ***********\n \e[0m" 
 ## echo the date at start
 level2_ftrack()
 {

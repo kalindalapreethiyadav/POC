@@ -31,33 +31,9 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         }   
     }
 
-level3_dftrack()
-{
-echo -e "\e[32m Tracking directries > $file_per% in $1:\n \e[0m"
-total_size=$(df $line | awk '{print $2}' | tail -1)
-cd $line
-for line in $(find . -path '*/\.*' -prune -o -type d -exec du -sk {} + | sort -rn | head -5 | awk '{print $NF}')
-        {
-        if [ -d "$line" ]; then
-           #echo -e "$line is a file";
-            used_fsize=$(ls -lrt $line | awk '{print $5F}')
-            #echo $total_size $used_fsize 
-            dpercent=$((100*$used_fsize/$total_size ))
-                if [ $dpercent -ge $dir_per ] ; then
-                    echo "$line is greater than 10%\n"
-                else
-                echo "Director $line is not > 10%"
-                fi
-        else
-            echo " " > /dev/null
-        fi
-        }   
-    }
-
 for line in $filepath
 do
 level2_ftrack $line
-level3_dftrack $line
 done
 
 echo -e "\e[32m *******Succesfully completed on $(date +%F) ***********\n \e[0m"

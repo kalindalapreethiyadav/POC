@@ -29,7 +29,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         fi
         }   
     }
-
+<<comm
 level3_dftrack()
 {
 cd $1
@@ -55,7 +55,7 @@ for line in ($(find . type -d -exec du -sk {} + | sort -rn | head -10 | awk -F '
     fi
 }
 }
-
+comm
 for line in $filepath
 do
 level2_ftrack $line

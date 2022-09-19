@@ -11,10 +11,19 @@ level3_dftrack()
 {
 echo -e "\e[32m Tracking directries > $dir_per% in $1:\n \e[0m"
 total_size=$(df $line | awk '{print $2}' | tail -1)
-cd $1
+cd $line
 for line in $(find . -path '*/\.*' -prune -o -type d -exec du -sk {} + | sort -rn | head -5 | awk '{print $NF}')
         {
-           echo "$line"
+           
+          used_dsize=$(ls -lrt | grep "^d" $line | awk '{print $5F}') 
+           # dpercent=$((100*$used_dsize/$total_size ))
+            echo "Total_SIZE = $total_size Used_SIZE = $used_dsize  directory_Details = $line"
+                if [ $dpercent -ge $dir_per ] ; then
+                    echo "$line is greater than 5%\n"
+                else
+                echo "Director $line is not > 5%"
+                fi
+
         }   
     }
 

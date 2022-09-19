@@ -4,7 +4,7 @@
 filepath=$(cat filepath.txt)
 #fsize="+200c"
 file_per=1
-echo -e "\e[32m *******Script started on $(date +%F) ***********\n \e[0m" 
+echo -e "\e[32m *******Script started on $(date +'%m/%d/%Y') ***********\n \e[0m" 
 ## echo the date at start
 
 level2_ftrack()
@@ -37,9 +37,11 @@ if (ls -lrt | grep "^d" )
 echo -e "\e[32m Tracking directories > $file_per% in $1:\n \e[0m"
 total_size=$(df $line | awk '{print $2}' | tail -1)
 
-for line in ($(ls -lrt | grep "^d" |awk -F ' ' '{print $NF}'))
+for line in ($(find . type -d -exec du -sk {} + | sort -rn | head -10 | awk -F ' ' '{print $NF}'))
 {
-    used_fsize=$(ls -lrt $line | awk '{print $5F}')
+#for line in ($(ls -lrt | grep "^d" | awk -F ' ' '{print $NF}'))
+ # {
+   used_fsize=$(ls -lrt $line | awk '{print $5F}')
    fpercent=$((100*$used_fsize/$total_size ))
     if [ -d "$line" ] ; then
         echo "director name : $line";
@@ -53,7 +55,6 @@ for line in ($(ls -lrt | grep "^d" |awk -F ' ' '{print $NF}'))
     fi
 }
 }
-comm
 
 for line in $filepath
 do

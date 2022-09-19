@@ -11,7 +11,7 @@ level2_ftrack()
 {
 echo -e "\e[32m Tracking files > $file_per% in $1:\n \e[0m"
 total_size=$(df $line | awk '{print $2}' | tail -1)
-t_files=$(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}' 2>&1 | grep -v "Permission denied")
+t_files=$(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}' 2>/dev/null)
 cd $line
 for line in $t_files
         {

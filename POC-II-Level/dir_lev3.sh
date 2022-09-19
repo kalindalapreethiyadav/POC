@@ -16,7 +16,7 @@ for line in $(find . -path '*/\.*' -prune -o -type d -exec du -sk {} + | sort -r
         {
         if [ -d "$line" ]; then
             used_dsize=$(ls -lrt $line | awk '{print $5F}') 
-            dpercent=$((100*$used_fsize/$total_size ))
+            dpercent=$((100*$used_dsize/$total_size ))
             echo "Total_SIZE = $total_size Used_SIZE = $used_dsize  directory_Details = $line"
                 if [ $dpercent -ge $dir_per ] ; then
                     echo "$line is greater than 5%\n"

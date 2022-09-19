@@ -12,6 +12,7 @@ level3_dftrack()
 echo -e "\e[32m Tracking directries > $file_per% in $1:\n \e[0m"
 total_size=$(df $line | awk '{print $2}' | tail -1)
 cd $line
+ls -lrt
 for line in $(find . -path '*/\.*' -prune -o -type d -exec du -sk {} + | sort -rn | head -5 | awk '{print $NF}')
         {
         if [ -d "$line" ]; then

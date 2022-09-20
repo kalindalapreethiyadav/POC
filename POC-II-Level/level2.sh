@@ -16,7 +16,7 @@ cd $line
 #Identifying the files in the Filesystem Path by ignoring the Hidden-binary files and Tracking HIGH DISK USED files by sorting and filtering the TOP 10 high disk used files in specified Paths
 
 for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
-        {
+        do
         if [ -f "$line" ]; then
            # echo -e "$line is a file";
             used_fsize=$(ls -lrt $line | awk '{print $5F}')
@@ -30,14 +30,14 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         else
             echo " " > /dev/null
         fi
-        }
+        done
     }
 
-#Reading each filesystem path in filepath file and passing with arguments to function.
-for line in $filepath 
+
+for line in $filepath #Reading each filesystem path in filepath file
 do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
-level2_ftrack $line
+level2_ftrack $line #Passing with argument to function
 done
 
 echo -e "\e[35m *******Succesfully completed on $(date) ***********\n \e[0m"

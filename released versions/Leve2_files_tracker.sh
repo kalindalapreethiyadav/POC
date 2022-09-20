@@ -27,7 +27,6 @@ find $1 -type f -mtime +15 -size $fsize -ls | awk '{print $(NF-4)" "$NF}'
 echo -e "\e[34m-------------------------------------------\e[0m"
 }
 
-
 level2_ftrack()
 {
 echo -e "\e[32m Tracking files > $file_per% in $1:\n \e[0m"
@@ -49,7 +48,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
             echo " " > /dev/null
         fi
         }   
-    }
+}
 
 
 #Reading each filesystem path in filepath file and calling the functions with arguments

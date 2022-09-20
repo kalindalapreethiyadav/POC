@@ -5,29 +5,7 @@
 exec 1> file_tracking.log 2>&1
 filepath=$(cat filepath.txt)
 Tracked_filepath=$(cat output.txt)
-fsize="+200c"
 file_per=1
-
-echo -e "\e[32m *******Script started on $(date) ***********\n \e[0m" 
-
-pre_fcheck()
- {
-#Tracking & identify the pre-defined test files that matches the sufix/pre-fix
-echo -e "\e[32m Test files in $1:\n \e[0m"
-find $1 -type f \( -name '*test*' -o -name "*onetime*" -o -name "*dummy*" -o -name "*TEST*FILE*" -o -name "*test*file*" -o -name '*ONETIME*' -o -name '*TEST*' -o -name '*DUMMY*' \) -exec ls -lt {} \; | awk '{print $NF}'
-echo -e "\e[34m-------------------------------------------\e[0m"
- 
-#identifying the 60 days old-dates files 
-echo -e "Files older than 60 days in $1 :\n"
-find $1 -type f -mtime +60 -ls | awk '{print $(8)" "$(9) "\t" $(NF-4) "\t" $NF}'
-echo -e "\e[34m-------------------------------------------\e[0m"
-
-#Tracking files - If file size is > $fsize (specfic size) and if older than 15 days 
-echo -e "Files size > $fsize & modified 15 days prior in $1 : \n"
-find $1 -type f -mtime +15 -size $fsize -ls | awk '{print $(NF-4)" "$NF}'
-echo -e "\e[34m-------------------------------------------\e[0m"
-}
-
 
 level2_ftrack()
 {
@@ -57,7 +35,6 @@ for line in $Tracked_filepath
 for line in $filepath 
 do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
-pre_fcheck "$line"
 level2_ftrack $line
 done
 

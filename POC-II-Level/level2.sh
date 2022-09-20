@@ -4,7 +4,7 @@
 
 exec 1> file_tracking.log 2>&1
 filepath=$(cat filepath.txt)
-Tracked_filepath=$(cat output.txt)
+#Tracked_filepath=$(cat output.txt)
 file_per=1
 
 level2_ftrack()

@@ -13,6 +13,7 @@ echo -e "\e[32m Tracking files > $file_per% in $1:\n \e[0m"
 total_size=$(df $line | awk '{print $2}' | tail -1)
 cd $line
 find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}' 2>/dev/null 1>output.txt
+echo $Tracked_filepath
 for line in $Tracked_filepath
         do
         if [ -f "$line" ]; then

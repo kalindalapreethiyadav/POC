@@ -36,7 +36,7 @@ total_size=$(df $line | awk '{print $2}' | tail -1)
 cd $line
 find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}' 2>/dev/null 1>output.txt
 for line in $Tracked_filepath
-        {
+        do
         if [ -f "$line" ]; then
            # echo -e "$line is a file";
             used_fsize=$(ls -lrt $line | awk '{print $5F}')
@@ -50,7 +50,7 @@ for line in $Tracked_filepath
         else
             echo " " > /dev/null
         fi
-        }   
+        done  
     }
 
 #Reading each filesystem path in filepath file and calling the functions with arguments

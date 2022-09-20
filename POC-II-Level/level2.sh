@@ -4,16 +4,16 @@
 
 exec 1> file_tracking.log 2>&1
 filepath=$(cat filepath.txt)
-#Tracked_filepath=$(cat output.txt)
 file_per=1
+
+echo -e "\e[32m *******Script started on $(date) ***********\n \e[0m" 
 
 level2_ftrack()
 {
 echo -e "\e[32m Tracking files > $file_per% in $1:\n \e[0m"
 total_size=$(df $line | awk '{print $2}' | tail -1)
 cd $line
-$Tracked_filepath=$(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}') 
-for line in $Tracked_filepath
+for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
         do
         if [ -f "$line" ]; then
            # echo -e "$line is a file";
@@ -28,8 +28,9 @@ for line in $Tracked_filepath
         else
             echo " " > /dev/null
         fi
-        done  
+        done
     }
+
 
 #Reading each filesystem path in filepath file and calling the functions with arguments
 for line in $filepath 

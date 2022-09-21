@@ -34,8 +34,8 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         done
     }
 
-
-for line in $filepath #Reading each filesystem path in filepath file
+#Reading each filesystem path in filepath file
+for line in $filepath 
 do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 level2_ftrack $line #Passing with argument to function

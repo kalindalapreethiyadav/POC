@@ -29,7 +29,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
                 if [ $fpercent -ge $Track_file_percent ] ; then
                 echo "Total_SIZE = $total_size Used_SIZE = $used_fsize Used_percent = $fpercent  File_Details = $line"
                 else
-                echo " " > /dev/null
+                echo " " > /dev/null #supress the data
                 fi
         else
             echo " " > /dev/null

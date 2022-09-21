@@ -1,42 +1,52 @@
-
 #!/bin/bash
 
-exec 1> file_tracking.log 2>&1
-filepath=$(cat filepath.txt)
-#fsize="+200c"
-file_per=1
+#Tracking files >5% based on Total_size of Disk Filesystem
+exec 1> file_tracking.log 2>&1  #Saving entire log in single file
+filepath=$(cat filepath.txt) #Provide the Paths where we need to the Track files
+Track_file_percent=5     # Identifing the files > 5%
 
-echo -e "\e[32m *******Script started on $(date) ***********\n \e[0m" 
-## echo the date at start
+echo -e "\e[35m *******Script started on $(date)***********\n \e[0m"
+
 level2_ftrack()
 {
-echo -e "\e[32m Tracking files > $file_per% in $1:\n \e[0m"
+echo -e "\e[32m Tracking files > $Track_file_percent% in $1:\n \e[0m"
 total_size=$(df $line | awk '{print $2}' | tail -1)
 cd $line
-Tracked_files=$(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}') 
-for line in $Tracked_files
-    do
+
+#Identifying the files in the Filesystem Path by ignoring the Hidden-binary files and Tracking HIGH DISK USED files by sorting and filtering the TOP 10 high disk used files in specified Paths
+
+for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn | head -10 | awk '{print $NF}')
+        do
         if [ -f "$line" ]; then
            # echo -e "$line is a file";
             used_fsize=$(ls -lrt $line | awk '{print $5F}')
-            #echo $total_size $used_fsize 
+            #echo $total_size $used_fsize
             fpercent=$((100*$used_fsize/$total_size ))
-                if [ $fpercent -ge $file_per ] ; then
-                echo "Total_SIZE = $total_size Used_SIZE = $used_fsize  File_Details = $line  Used_percent = $fpercent"
+                if [ $fpercent -ge $Track_file_percent ] ; then
+                echo "Total_SIZE = $total_size Used_SIZE = $used_fsize Used_percent = $fpercent  File_Details = $line"
                 else
                 echo " " > /dev/null
                 fi
         else
             echo " " > /dev/null
         fi
-    done  
+        done
     }
 
-for line in $filepath
+level3_dtrack()
+{
+    cd $line
+    
+}
+
+for line in $filepath #Reading each filesystem path in filepath file
 do
-level2_ftrack $line
+echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
+level2_ftrack $line #Passing with argument to function
+level3_dtrack $line
 done
 
-echo -e "\e[32m *******Succesfully completed on $(date) ***********\n \e[0m"
+echo -e "\e[35m *******Succesfully completed on $(date) ***********\n \e[0m"
 exit 0
+
 

@@ -20,6 +20,39 @@ level3_dftrack()
       fi
     }
 
+
+<<comm
+files_func()
+{
+   file_len=$(istat "$line" |grep 'Length' | awk '{print $5F}')
+   max_len=1800
+   if [ -f "$line" && ! -s "$line" ] then
+	return
+	elif [-f "$line" && -s "$line" && $file_len -ge $max_len ] then
+		echo -e "File $line Details : \n"  >> /home/preek/fmail.txt
+		istat "$line" >> /home/preek/fmail.txt
+		echo -e "-----------------\n" >> /home/preek/fmail.txt
+	else
+	echo "File "$line" does not exist"
+	fi
+}
+comm
+
+
+files_func()
+{
+file_len=$istat "$line" |grep 'Length' | awk '{print $5F}'
+max_len=2000000000
+    if [[ -f "$line" && -s "$line" && $file_len -ge $max_len && time <15 days ]]
+	then
+        echo -e "File $line Details : \n"  
+        istat "$line"
+        echo -e "-----------------\n"
+	else
+	    echo "File "$line" not > $max_len size\n"
+	fi
+}
+
 for line in $filepath
 do
 level3_dftrack $line

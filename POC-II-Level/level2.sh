@@ -8,7 +8,7 @@ Description
 
 exec 1> file_tracking.log 2>&1  
 filepath=$(cat /home/preek/filepath.txt) #Providing the Filesystem Paths where to Track files
-Track_file_percent=5  #Providing "%" that how much we need to track based on FS.
+Track_file_percent=3  #Providing "%" that how much we need to track based on FS.
 
 echo -e "\e[35m *******Script started on $(date)***********\n \e[0m"
 

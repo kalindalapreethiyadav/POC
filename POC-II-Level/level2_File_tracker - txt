@@ -20,7 +20,7 @@ total_size=$(df $line | awk '{print $2}' | tail -1)
 cd $line
 
 #Tracking & identifying Top 10 High disk consumed files only on all directories(including sub -dir) recursivly in the Filesystem Path
-set +e
+
 for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -rn |head -10  | awk '{print $NF}')
         do
         if [ -f "$line" ]; then
@@ -36,7 +36,7 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         fi
         done
     }
-set -e
+
 
 for line in $filepath #Reading each filesystem path in filepath file
 do

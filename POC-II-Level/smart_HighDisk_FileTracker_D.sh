@@ -9,17 +9,11 @@ Tracking & Identifing only High Disk space consumed files in all directories rec
 Description
 
 exec 1> file_tracking.log 2>&1
-filepath=$(cat /home/preek/filepath.txt) #Providing the Filesystem Paths where to Track files
 FS_Scratch=$(cat FSpaths_Scratch.txt)
 FS_DS_CLA=$(cat FSpaths_Datasets_CLA.txt)
 FS_DS=$(cat FSpaths_Datasets.txt)
 FS_DS_ISOMS=$(cat FSpaths_Datasets_ISOMS.txt)
-FS_PP_ISOM=$(cat FSpaths_PP_ISOM.txt)
-FS_PP=$(cat FSpaths_PP.txt)
-FS_P_DS=$(cat FSpaths_P_DS.txt)
 FS_DS_IDSS=$(cat FSpaths_Datasets_IDSS.txt)
-FS_PP_CTS=$(cat FSpaths_PP_CTS.txt)
-
 
 Track_file_percent=40 #Providing "%" that how much we need to track based on FS.
 
@@ -50,33 +44,21 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         done
     }
 
-FS_Scratch=$(cat FSpaths_Scratch.txt)
-FS_DS_CLA=$(cat FSpaths_Datasets_CLA.txt)
-FS_DS=$(cat FSpaths_Datasets.txt)
-FS_DS_ISOMS=$(cat FSpaths_Datasets_ISOMS.txt)
-FS_PP_ISOM=$(cat FSpaths_PP_ISOM.txt)
-FS_PP=$(cat FSpaths_PP.txt)
-FS_P_DS=$(cat FSpaths_P_DS.txt)
-FS_DS_IDSS=$(cat FSpaths_Datasets_IDSS.txt)
-FS_PP_CTS=$(cat FSpaths_PP_CTS.txt)
-
-for line in $filepath 
+for line in $FS_Scratch 
 do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 level2_ftrack $line 
 done
 
-for line in $FS_Scratch 
+sleep 5
+
+for line in $FS_DS_CLA
 do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 level2_ftrack $line
 done
 
-for line in $FS_DS_CLA 
-do
-echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
-level2_ftrack $line
-done
+sleep 5
 
 for line in $FS_DS 
 do
@@ -84,12 +66,21 @@ echo -e "\e[36m****************started files tracking on $line******************
 level2_ftrack $line
 done
 
-for line in $FS_DS_ISOMS 
+sleep 5
+
+for line in $FS_DS_ISOMS
 do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 level2_ftrack $line
 done
 
+sleep 5
+
+for line in $FS_DS_IDSS
+do
+echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
+level2_ftrack $line
+done
 
 
 echo -e "\e[35m *******Succesfully completed on $(date) ***********\n \e[0m"

@@ -8,7 +8,7 @@ Tracking & Identifing only High Disk space consumed files in all directories rec
 ******************************************************************************************
 Description
 
-exec 1> file_tracking.log 2>&1
+exec 1> file_tracking_D.log 2>&1
 FS_Scratch=$(cat FSpaths_Scratch.txt)
 FS_DS_CLA=$(cat FSpaths_Datasets_CLA.txt)
 FS_DS=$(cat FSpaths_Datasets.txt)

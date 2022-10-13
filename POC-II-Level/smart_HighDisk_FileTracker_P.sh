@@ -8,7 +8,7 @@ Tracking & Identifing only High Disk space consumed files in all directories rec
 ******************************************************************************************
 Description
 
-exec 1> file_tracking.log 2>&1
+exec 1> file_tracking_P.log 2>&1
 FS_PP_ISOM=$(cat FSpaths_PP_ISOM.txt)
 FS_PP=$(cat FSpaths_PP.txt)
 FS_PP_CTS=$(cat FSpaths_PP_CTS.txt)

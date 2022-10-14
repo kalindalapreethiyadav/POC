@@ -29,6 +29,8 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
             fpercent=$((100*$used_fsize/$total_size ))
                 if [[($fpercent -ge $Track_file_percent) && ($fpercent -le 100) ]] ; then
                 echo "Total_SIZE = $total_size Used_SIZE = $used_fsize Used_percent = $fpercent  File_Details = $line"
+                elif [[ $fpercent -ge 100 ]] ; then
+                 echo "File_Path = $(pwd) Total_SIZE = $total_size Used_SIZE = $used_fsize Used_percent = $fpercent  File_Details = $line" > /home/preek/Files_details_ge100.log
                 else
                 echo " " > /dev/null #supress the data
                 fi

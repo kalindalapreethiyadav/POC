@@ -7,6 +7,7 @@ FS_PP_ISOM=$(cat FSpaths_PP_ISOM.txt)
 FS_PP=$(cat FSpaths_PP.txt)
 FS_PP_CTS=$(cat FSpaths_PP_CTS.txt)
 FS_P_DS=$(cat FSpaths_P_DS.txt)
+#FS_Dstemp=$(cat FSpaths_Dstemp.txt)
 
 Track_file_percent=40 #Providing "%" that how much we need to track based on FS.
 
@@ -66,6 +67,14 @@ do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 level2_ftrack $line
 done
+
+<<comm
+for line in $FS_Dstemp 
+do
+echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
+level2_ftrack $line 
+done
+comm
 
 echo -e "\e[35m *******Succesfully completed on $(date) ***********\n \e[0m"
 exit 0

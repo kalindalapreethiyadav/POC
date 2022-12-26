@@ -3,10 +3,10 @@
 #!/bin/bash
 
 exec 1> file_tracking_P.log 2>&1
-FS_PP_ISOM=$(cat FSpaths_PP_ISOM.txt)
-FS_PP=$(cat FSpaths_PP.txt)
-FS_PP_CTS=$(cat FSpaths_PP_CTS.txt)
-FS_P_DS=$(cat FSpaths_P_DS.txt)
+FS_PP_ISOM=$(cat FSpaths_PP_I.txt)
+FS_PP=$(cat FSpaths_P.txt)
+FS_PP_CTS=$(cat FSpaths_PP_C.txt)
+FS_P_DS=$(cat FSpaths_P_D.txt)
 #FS_Dstemp=$(cat FSpaths_Dstemp.txt)
 
 Track_file_percent=40 #Providing "%" that how much we need to track based on FS.
@@ -14,7 +14,7 @@ Track_file_percent=40 #Providing "%" that how much we need to track based on FS.
 echo -e "\e[35m *******Script started on $(date)***********\n \e[0m"
 
 level2_ftrack()
-{
+{ 
 echo -e "\e[32m Tracking files > $Track_file_percent% in $1:\n \e[0m"
 #Finding the Total size of the fileystem
 total_size=$(df $line | awk '{print $2}' | tail -1)
@@ -40,21 +40,18 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         done
     }
 
-for line in $FS_PP_ISOM 
+for line in $FS_PP_I
 do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 level2_ftrack $line 
 done
 
-sleep 5
 
-for line in $FS_PP
+for line in $FS_P
 do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 level2_ftrack $line
 done
-
-sleep 5
 
 for line in $FS_P_DS 
 do
@@ -62,16 +59,14 @@ echo -e "\e[36m****************started files tracking on $line******************
 level2_ftrack $line
 done
 
-sleep 5
-
-for line in $FS_PP_CTS 
+for line in $FS_PP_C
 do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 level2_ftrack $line
 done
 
 <<comm
-for line in $FS_Dstemp 
+for line in $FS_Ds
 do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 level2_ftrack $line 

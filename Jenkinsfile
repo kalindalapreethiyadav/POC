@@ -1,13 +1,13 @@
 pipeline
 {
-   agent { label "deploy" }
+   agent { label 'docker || deploy' }
       stages{
          stage("build Image"){
             steps {
                    sh """
                    cd /home/centos/POC/POcs-CD/
                    ls -lrt;
-                   echo "hello";
+   
                    """
                   }    
             }

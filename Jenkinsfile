@@ -1,6 +1,6 @@
 pipeline
 {
-    agent label{'deploy'}
+    agent { label 'deploy' }
       stages{
         stage('build Image'){
            steps {

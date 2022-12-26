@@ -6,7 +6,8 @@ pipeline
             steps {
                    sh """
                    cd /home/centos/POC/POcs-CD/
-                   echo "hello"
+                   ls -lrt;
+                   echo "hello";
                    """
                   }    
             }

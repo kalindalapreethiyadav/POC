@@ -44,14 +44,14 @@ for line in $(find . -path '*/\.*' -prune -o -type f -exec du -sk {} + | sort -r
         done
     }
 
-for line in $FS_Scratch 
+for line in $FS_S 
 do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 level2_ftrack $line 
 done
 
 
-for line in $FS_DS_CLA
+for line in $FS_DS_C
 do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 level2_ftrack $line
@@ -63,13 +63,13 @@ echo -e "\e[36m****************started files tracking on $line******************
 level2_ftrack $line
 done
 
-for line in $FS_DS_ISOMS
+for line in $FS_DS_I
 do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 level2_ftrack $line
 done
 
-for line in $FS_DS_IDSS
+for line in $FS_DS_I
 do
 echo -e "\e[36m****************started files tracking on $line******************\e[0m \n"
 level2_ftrack $line

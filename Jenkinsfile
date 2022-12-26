@@ -1,19 +1,19 @@
 pipeline
-{  
+{
    agent { label "deploy" }
       stages{
-         stage('build Image'){
+         stage("build Image"){
             steps {
               sh """
               cd /POC/POc's-CD/;
-              ls -lrt
+              ls -lrt ;
               """
                   }    
             }
          stage('Run Image'){
             steps {
               sh """
-               echo "run imge"
+               echo "run imge" ;
                """
               }
            }

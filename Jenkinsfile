@@ -4,7 +4,10 @@ pipeline
       stages{
          stage("build Image"){
             steps {
+                   sh """
+                   cd /home/centos/POC/POc's-CD/
                    echo "hello"
+                   """
                   }    
             }
          stage('Run Image'){

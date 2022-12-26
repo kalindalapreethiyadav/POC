@@ -1,10 +1,10 @@
 pipeline
 {
-    agent any
+    agent label{'deploy'}
     stages{
         stage('build Image')
          {
-            cd /home/centos/POC/POc's-CD
+            cd /POC/POc's-CD
             ls -lrt
          }
          stage('Run Image')

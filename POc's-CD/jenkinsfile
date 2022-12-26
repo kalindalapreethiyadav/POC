@@ -1,0 +1,14 @@
+pipeline
+{
+    agent any
+    stages{
+        stage('build Image')
+         {
+            cd /POc's-CD/
+         }
+         stage('Run Image')
+         {
+            echo "run imge"
+         }
+    }
+}

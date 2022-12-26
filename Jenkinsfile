@@ -4,9 +4,7 @@ pipeline
       stages{
          stage("build Image"){
             steps {
-                   cd /home/centos/POC/POc's-CD;
-                   ls -lrt;
-                   echo "hello";
+                   echo "hello"
                   }    
             }
          stage('Run Image'){

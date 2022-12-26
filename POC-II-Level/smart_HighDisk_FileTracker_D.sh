@@ -7,11 +7,11 @@ Tracking & Identifing only High Disk space consumed files in all directories rec
 Description
 
 exec 1> file_tracking_D.log 2>&1
-FS_Scratch=$(cat FSpaths_Scratch.txt)
-FS_DS_CLA=$(cat FSpaths_Datasets_CLA.txt)
-FS_DS=$(cat FSpaths_Datasets.txt)
-FS_DS_ISOMS=$(cat FSpaths_Datasets_ISOMS.txt)
-FS_DS_IDSS=$(cat FSpaths_Datasets_IDSS.txt)
+FS_Scratch=$(cat FSpaths_S.txt)
+FS_DS_CLA=$(cat FSpaths_Datasets_C.txt)
+FS_DS=$(cat FSpaths_D.txt)
+FS_DS_ISOMS=$(cat FSpaths_Datasets_I.txt)
+FS_DS_IDSS=$(cat FSpaths_Datasets_I.txt)
 
 Track_file_percent=40  #Providing "%" that how much we need to track based on filesystem.
 

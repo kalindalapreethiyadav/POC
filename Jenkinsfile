@@ -5,7 +5,7 @@ pipeline
         stage('build Image'){
            steps {
             sh ''' 
-            cd /POC/POc's-CD
+            cd /POC/POc's-CD/;
             sh ls -lrt
             '''
            }    

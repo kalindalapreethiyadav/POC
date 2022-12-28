@@ -2,12 +2,19 @@ pipeline
 {
    agent { label 'docker || deploy' }
       stages{
-         stage("build Image"){
+         stage("Change Directory"){
             steps {
                    sh """
                    cd /home/centos/POC/POcs-CD/
                    ls -lrt;
-   
+                   """
+                  }    
+            }
+            stage("login docker"){
+            steps {
+                   sh """
+                   cd /home/centos/POC/POcs-CD/
+                   ls -lrt;
                    """
                   }    
             }
@@ -18,3 +25,5 @@ pipeline
            }
          }
       }
+
+      

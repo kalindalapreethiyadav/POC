@@ -21,8 +21,7 @@ pipeline
          stage('Run Image'){
             steps {
                   echo "hello1"
-                  mvn -v
-                  mvn package
+         
               }
            }
          }

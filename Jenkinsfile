@@ -9,6 +9,8 @@ pipeline
                    ls -lrt;
                    """
                   }    
+
+                  
             }
             stage("login docker"){
             steps {

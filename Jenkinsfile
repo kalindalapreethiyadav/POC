@@ -1,8 +1,8 @@
 pipeline
 {
    agent any
-      stages{
-         stage("Change Directory"){
+      stages {
+         stage('Change Directory'){
             steps {
                    sh """
                    cd /home/centos/POC/

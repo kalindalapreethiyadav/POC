@@ -9,9 +9,9 @@ pipeline
                    ls -lrt;
                    """
                   }    
-            }
+                 }
          stage('source Code clean'){
-            steps {
+             steps {
                   echo "cleaning the source code"
                   mvn clean
               }

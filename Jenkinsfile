@@ -1,6 +1,5 @@
 pipeline
 {
-   #agent { label 'docker || deploy' }
    agent any
       stages{
          stage("Change Directory"){

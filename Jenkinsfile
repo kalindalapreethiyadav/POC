@@ -9,7 +9,7 @@ pipeline {
                    """
                   }    
                  }
-         stage('source Code clean'){
+         stage('source Code clean') {
              steps {
                   echo "cleaning the source code"
                   mvn clean
